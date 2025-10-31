@@ -1,20 +1,32 @@
-import { useState } from 'react';
-
 const App = () => {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <main className="min-h-screen flex items-center justify-center p-8">
+      <section className="text-center max-w-[720px]">
+        <h1 className="text-3xl font-semibold mb-2">
+          Welcome to the Storybook Component Library
+        </h1>
+        <p className="text-gray-600 mb-5">
+          This playground showcases reusable UI components. Use Storybook to
+          explore components, props, and states.
         </p>
-      </div>
-    </>
+        <div className="flex gap-3 justify-center flex-wrap">
+          <a
+            href="http://localhost:6006"
+            target="_blank"
+            rel="noreferrer"
+            className="px-3.5 py-2 rounded-lg border border-gray-200 no-underline hover:bg-gray-50">
+            Storybook
+          </a>
+          <a
+            href="https://github.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="px-3.5 py-2 rounded-lg border border-gray-200 no-underline hover:bg-gray-50">
+            Docs
+          </a>
+        </div>
+      </section>
+    </main>
   );
 };
 
