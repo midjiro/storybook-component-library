@@ -77,7 +77,12 @@ export const Error: Story = {
   render: () => (
     <div className="w-full">
       <Label htmlFor="email-error">Email</Label>
-      <Input id="email-error" type="email" placeholder="email@example.com" error />
+      <Input
+        id="email-error"
+        type="email"
+        placeholder="email@example.com"
+        error
+      />
       <ErrorMessage>Please enter a valid email address</ErrorMessage>
     </div>
   ),
@@ -102,8 +107,14 @@ export const PasswordWithHelper: Story = {
   render: () => (
     <div className="w-full">
       <Label htmlFor="password-helper">Password</Label>
-      <Input id="password-helper" type="password" placeholder="Enter password" />
-      <p className="mt-1.5 text-sm text-gray-600">Must be at least 8 characters</p>
+      <Input
+        id="password-helper"
+        type="password"
+        placeholder="Enter password"
+      />
+      <p className="mt-1.5 text-sm text-gray-600">
+        Must be at least 8 characters
+      </p>
     </div>
   ),
 };
@@ -145,7 +156,9 @@ export const EmailWithClear: Story = {
         placeholder="email@example.com"
         clearable
       />
-      <p className="mt-1.5 text-sm text-gray-600">We'll never share your email</p>
+      <p className="mt-1.5 text-sm text-gray-600">
+        We'll never share your email
+      </p>
     </div>
   ),
 };
@@ -278,7 +291,9 @@ export const WithReactHookForm: StoryObj = {
               error={!!errors.email}
               clearable
             />
-            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+            {errors.email && (
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
+            )}
           </div>
 
           <div className="w-full">
