@@ -1,21 +1,12 @@
-import { useState } from 'react';
+import { Container } from '@/components/Container';
+import { WelcomeMessage } from '@/components/WelcomeMessage';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = () => {
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </>
+    <Container>
+      <WelcomeMessage />
+    </Container>
   );
-}
+};
 
 export default App;
