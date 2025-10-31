@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Input } from '@/components/Input';
+import { ErrorMessage, Input, Label } from '@/components/Input';
 import { toast } from '@/components/Toast';
 
 const meta = {
@@ -49,59 +49,63 @@ export const Default: Story = {
  * Input with a label
  */
 export const WithLabel: Story = {
-  args: {
-    type: 'text',
-    placeholder: 'Enter your name',
-    label: 'Full Name',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="full-name">Full Name</Label>
+      <Input id="full-name" type="text" placeholder="Enter your name" />
+    </div>
+  ),
 };
 
 /**
  * Input with helper text
  */
 export const WithHelperText: Story = {
-  args: {
-    type: 'text',
-    placeholder: 'username',
-    label: 'Username',
-    helperText: 'Choose a unique username',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="username">Username</Label>
+      <Input id="username" type="text" placeholder="username" />
+      <p className="mt-1.5 text-sm text-gray-600">Choose a unique username</p>
+    </div>
+  ),
 };
 
 /**
  * Input in error state
  */
 export const Error: Story = {
-  args: {
-    type: 'email',
-    placeholder: 'email@example.com',
-    label: 'Email',
-    error: true,
-    errorMessage: 'Please enter a valid email address',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="email-error">Email</Label>
+      <Input id="email-error" type="email" placeholder="email@example.com" error />
+      <ErrorMessage>Please enter a valid email address</ErrorMessage>
+    </div>
+  ),
 };
 
 /**
  * Password input with visibility toggle
  */
 export const Password: Story = {
-  args: {
-    type: 'password',
-    placeholder: 'Enter password',
-    label: 'Password',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="password">Password</Label>
+      <Input id="password" type="password" placeholder="Enter password" />
+    </div>
+  ),
 };
 
 /**
  * Password input with visibility toggle and helper text
  */
 export const PasswordWithHelper: Story = {
-  args: {
-    type: 'password',
-    placeholder: 'Enter password',
-    label: 'Password',
-    helperText: 'Must be at least 8 characters',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="password-helper">Password</Label>
+      <Input id="password-helper" type="password" placeholder="Enter password" />
+      <p className="mt-1.5 text-sm text-gray-600">Must be at least 8 characters</p>
+    </div>
+  ),
 };
 
 /**
@@ -120,52 +124,68 @@ export const Clearable: Story = {
  * Number input with clear button
  */
 export const Number: Story = {
-  args: {
-    type: 'number',
-    placeholder: 'Enter a number',
-    label: 'Age',
-    clearable: true,
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="age">Age</Label>
+      <Input id="age" type="number" placeholder="Enter a number" clearable />
+    </div>
+  ),
 };
 
 /**
  * Email input with all features
  */
 export const EmailWithClear: Story = {
-  args: {
-    type: 'email',
-    placeholder: 'email@example.com',
-    label: 'Email Address',
-    clearable: true,
-    helperText: "We'll never share your email",
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="email-clear">Email Address</Label>
+      <Input
+        id="email-clear"
+        type="email"
+        placeholder="email@example.com"
+        clearable
+      />
+      <p className="mt-1.5 text-sm text-gray-600">We'll never share your email</p>
+    </div>
+  ),
 };
 
 /**
  * Disabled input
  */
 export const Disabled: Story = {
-  args: {
-    type: 'text',
-    placeholder: 'Cannot edit',
-    label: 'Disabled Input',
-    disabled: true,
-    defaultValue: 'Read only',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="disabled">Disabled Input</Label>
+      <Input
+        id="disabled"
+        type="text"
+        placeholder="Cannot edit"
+        disabled
+        defaultValue="Read only"
+      />
+    </div>
+  ),
 };
 
 /**
  * Full featured example
  */
 export const FullExample: Story = {
-  args: {
-    type: 'password',
-    placeholder: 'Create a password',
-    label: 'Password',
-    clearable: true,
-    helperText: 'Use a strong password with mixed characters',
-    id: 'password-input',
-  },
+  render: () => (
+    <div className="w-full">
+      <Label htmlFor="password-input">Password</Label>
+      <Input
+        id="password-input"
+        type="password"
+        placeholder="Create a password"
+        clearable
+      />
+      <p className="mt-1.5 text-sm text-gray-600">
+        Use a strong password with mixed characters
+      </p>
+    </div>
+  ),
 };
 
 /**
@@ -234,55 +254,79 @@ export const WithReactHookForm: StoryObj = {
         <h2 className="text-2xl font-bold text-gray-900">Sign Up Form</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input
-            {...register('username')}
-            label="Username"
-            placeholder="john_doe"
-            error={!!errors.username}
-            errorMessage={errors.username?.message}
-            clearable
-          />
+          <div className="w-full">
+            <Label htmlFor="username">Username</Label>
+            <Input
+              {...register('username')}
+              id="username"
+              placeholder="john_doe"
+              error={!!errors.username}
+              clearable
+            />
+            {errors.username && (
+              <ErrorMessage>{errors.username.message}</ErrorMessage>
+            )}
+          </div>
 
-          <Input
-            {...register('email')}
-            type="email"
-            label="Email"
-            placeholder="john.doe@example.com"
-            error={!!errors.email}
-            errorMessage={errors.email?.message}
-            clearable
-          />
+          <div className="w-full">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              {...register('email')}
+              id="email"
+              type="email"
+              placeholder="john.doe@example.com"
+              error={!!errors.email}
+              clearable
+            />
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+          </div>
 
-          <Input
-            {...register('password')}
-            type="password"
-            label="Password"
-            placeholder="Enter password"
-            error={!!errors.password}
-            errorMessage={errors.password?.message}
-            helperText="Must be at least 8 characters"
-            clearable
-          />
+          <div className="w-full">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              {...register('password')}
+              id="password"
+              type="password"
+              placeholder="Enter password"
+              error={!!errors.password}
+              clearable
+            />
+            {errors.password ? (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            ) : (
+              <p className="mt-1.5 text-sm text-gray-600">
+                Must be at least 8 characters
+              </p>
+            )}
+          </div>
 
-          <Input
-            {...register('confirmPassword')}
-            type="password"
-            label="Confirm Password"
-            placeholder="Re-enter password"
-            error={!!errors.confirmPassword}
-            errorMessage={errors.confirmPassword?.message}
-            clearable
-          />
+          <div className="w-full">
+            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Input
+              {...register('confirmPassword')}
+              id="confirmPassword"
+              type="password"
+              placeholder="Re-enter password"
+              error={!!errors.confirmPassword}
+              clearable
+            />
+            {errors.confirmPassword && (
+              <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
+            )}
+          </div>
 
-          <Input
-            {...register('age')}
-            type="number"
-            label="Age"
-            placeholder="18"
-            error={!!errors.age}
-            errorMessage={errors.age?.message}
-            clearable
-          />
+          <div className="w-full">
+            <Label htmlFor="age">Age</Label>
+            <Input
+              {...register('age')}
+              id="age"
+              type="number"
+              placeholder="18"
+              error={!!errors.age}
+              clearable
+            />
+            {errors.age && <ErrorMessage>{errors.age.message}</ErrorMessage>}
+          </div>
 
           <div className="flex gap-3">
             <button
