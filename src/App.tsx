@@ -18,7 +18,7 @@ const App = () => {
             Storybook
           </a>
           <a
-            href="https://github.com/"
+            href="https://github.com/midjiro/storybook-component-library"
             target="_blank"
             rel="noreferrer"
             className="px-3.5 py-2 rounded-lg border border-gray-200 no-underline hover:bg-gray-50">
