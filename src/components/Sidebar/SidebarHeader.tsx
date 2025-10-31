@@ -1,5 +1,8 @@
-import { cn } from '@/utils/classnames';
+import React from 'react';
 import { X } from 'lucide-react';
+
+import { cn } from '@/utils/classnames';
+
 import { useSidebarContext } from './hooks/useSidebarContext';
 
 export interface Props {

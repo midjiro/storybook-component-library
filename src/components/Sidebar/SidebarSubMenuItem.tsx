@@ -1,9 +1,10 @@
-import { useSubMenuContext } from './hooks/useSubMenuContext';
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 import { cn } from '@/utils/classnames';
-import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-import { AnimatePresence } from 'framer-motion';
+
+import { useSubMenuContext } from './hooks/useSubMenuContext';
 import { SidebarSubMenu } from './SidebarSubMenu';
 
 export interface Props {

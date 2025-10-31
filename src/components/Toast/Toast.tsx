@@ -1,11 +1,11 @@
 import { forwardRef, useEffect, useState } from 'react';
-
 import { AnimatePresence, motion } from 'framer-motion';
 import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 
 import { cn } from '@/utils/classnames';
+
 import { colorMap, iconColorMap } from './constants/colorMaps';
-import { type ToastPosition, positionMap } from './constants/positionMaps';
+import { positionMap, type ToastPosition } from './constants/positionMaps';
 import { type ToastType } from './constants/toastTypes';
 
 export interface ToastProps {

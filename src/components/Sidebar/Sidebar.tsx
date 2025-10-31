@@ -1,15 +1,16 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { SidebarSubMenuItem } from './SidebarSubMenuItem';
-
-import { SidebarSubMenu } from './SidebarSubMenu';
 import { cn } from '@/utils/classnames';
+
 import { SidebarContext } from './context/sidebarContext';
-import { SidebarHeader } from './SidebarHeader';
-import { SidebarFooter } from './SidebarFooter';
 import { SidebarContent } from './SidebarContent';
+import { SidebarFooter } from './SidebarFooter';
+import { SidebarHeader } from './SidebarHeader';
 import { SidebarMenu } from './SidebarMenu';
 import { SidebarMenuItem } from './SidebarMenuItem';
+import { SidebarSubMenu } from './SidebarSubMenu';
+import { SidebarSubMenuItem } from './SidebarSubMenuItem';
 
 export interface SidebarProps {
   /**

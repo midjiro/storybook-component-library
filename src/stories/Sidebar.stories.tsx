@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import { Home, Settings, User, Users, FileText, Folder } from 'lucide-react';
 import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { FileText, Folder,Home, Settings, User, Users } from 'lucide-react';
 
 import { Sidebar } from '@/components/Sidebar';
 

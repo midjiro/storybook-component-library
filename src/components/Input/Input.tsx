@@ -1,5 +1,4 @@
 import React, { forwardRef, useState } from 'react';
-
 import { Eye, EyeOff, X } from 'lucide-react';
 
 import { cn } from '@/utils/classnames';
