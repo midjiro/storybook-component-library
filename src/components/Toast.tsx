@@ -3,7 +3,7 @@ import { forwardRef, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 
-import { cn } from '../utils/classnames';
+import { cn } from '@/utils/classnames';
 
 export type ToastPosition =
   | 'top-right'

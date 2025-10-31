@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import { cn } from '../utils/classnames';
+import { cn } from '@/utils/classnames';
 
 export interface ErrorMessageProps
   extends React.HTMLAttributes<HTMLParagraphElement> {

@@ -3,7 +3,7 @@ import { useState, createContext, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, X } from 'lucide-react';
 
-import { cn } from '../utils/classnames';
+import { cn } from '@/utils/classnames';
 
 // Context for sidebar state
 interface SidebarContextType {

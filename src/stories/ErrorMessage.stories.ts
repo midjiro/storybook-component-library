@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ErrorMessage } from '../components/ErrorMessage';
+import { ErrorMessage } from '@/components/Input';
 
 const meta = {
   title: 'Example/ErrorMessage',
