@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useState } from 'react';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 
 import { cn } from '../utils/classnames';
@@ -112,8 +113,6 @@ export const Toast = forwardRef<HTMLElement, ToastProps>(
       }
     }, [duration, isVisible, onClose]);
 
-    if (!isVisible) return null;
-
     const iconMap = {
       info: <Info className="h-5 w-5" />,
       success: <CheckCircle className="h-5 w-5" />,
@@ -121,45 +120,79 @@ export const Toast = forwardRef<HTMLElement, ToastProps>(
       error: <AlertCircle className="h-5 w-5" />,
     };
 
+    // Animation variants based on position
+    const getVariants = () => {
+      const isTop = position.startsWith('top');
+      const isCenter = position.endsWith('center');
+
+      if (isCenter) {
+        return {
+          initial: { y: isTop ? -50 : 50, opacity: 0, scale: 0.8 },
+          animate: { y: 0, opacity: 1, scale: 1 },
+          exit: { y: isTop ? -50 : 50, opacity: 0, scale: 0.8 },
+        };
+      }
+
+      const isRight = position.endsWith('right');
+      return {
+        initial: { x: isRight ? 400 : -400, opacity: 0, scale: 0.8 },
+        animate: { x: 0, opacity: 1, scale: 1 },
+        exit: { x: isRight ? 400 : -400, opacity: 0, scale: 0.8 },
+      };
+    };
+
     return (
-      <article
-        ref={ref}
-        className={cn(
-          'fixed z-50 transition-all duration-300 ease-in-out',
-          positionMap[position]
-        )}>
-        <div
-          className={cn(
-            'flex items-start gap-3 rounded-lg border p-4 shadow-lg min-w-[320px] max-w-md',
-            colorMap[type],
-            className
-          )}>
-          {/* Icon */}
-          <section className={cn('shrink-0', iconColorMap[type])}>
-            {iconMap[type]}
-          </section>
-
-          {/* Content */}
-          <section className="flex-1">
-            {title && <h4 className="text-sm font-semibold mb-1">{title}</h4>}
-            <p className="text-sm leading-relaxed">{message}</p>
-          </section>
-
-          {/* Close button */}
-          {closeable && (
-            <button
-              type="button"
-              onClick={handleClose}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.article
+            ref={ref}
+            className={cn('fixed z-50', positionMap[position])}
+            variants={getVariants()}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{
+              type: 'spring',
+              damping: 25,
+              stiffness: 300,
+              mass: 0.8,
+            }}>
+            <div
               className={cn(
-                'shrink-0 rounded-md p-1 transition-colors hover:bg-black/5',
-                iconColorMap[type]
+                'flex items-start gap-3 rounded-lg border p-4 shadow-lg min-w-[320px] max-w-md',
+                colorMap[type],
+                className
+              )}>
+              {/* Icon */}
+              <section className={cn('shrink-0', iconColorMap[type])}>
+                {iconMap[type]}
+              </section>
+
+              {/* Content */}
+              <section className="flex-1">
+                {title && (
+                  <h4 className="text-sm font-semibold mb-1">{title}</h4>
+                )}
+                <p className="text-sm leading-relaxed">{message}</p>
+              </section>
+
+              {/* Close button */}
+              {closeable && (
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  className={cn(
+                    'shrink-0 rounded-md p-1 transition-colors hover:bg-black/5',
+                    iconColorMap[type]
+                  )}
+                  aria-label="Close toast">
+                  <X className="h-4 w-4" />
+                </button>
               )}
-              aria-label="Close toast">
-              <X className="h-4 w-4" />
-            </button>
-          )}
-        </div>
-      </article>
+            </div>
+          </motion.article>
+        )}
+      </AnimatePresence>
     );
   }
 );
