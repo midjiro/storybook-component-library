@@ -80,6 +80,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const hasValue =
       inputValue !== '' && inputValue !== undefined && inputValue !== null;
 
+    const showActionButtons = clearable || isPassword;
+
     return (
       <div className="w-full">
         {label && <Label htmlFor={props.id}>{label}</Label>}
@@ -101,25 +103,28 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
             {...props}
           />
-          {/* Clear button */}
-          {clearable && hasValue && (
-            <button
-              type="button"
-              onClick={handleClear}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              aria-label="Clear input">
-              <X size={16} />
-            </button>
-          )}
-          {/* Password toggle */}
-          {isPassword && hasValue && (
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              aria-label={showPassword ? 'Hide password' : 'Show password'}>
-              {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-            </button>
+
+          {showActionButtons && (
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+              {isPassword && hasValue && (
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-gray-400 hover:text-gray-600"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}>
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              )}
+              {clearable && hasValue && (
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="text-gray-400 hover:text-gray-600"
+                  aria-label="Clear input">
+                  <X size={16} />
+                </button>
+              )}
+            </div>
           )}
         </div>
         {/* Helper text or error message */}
