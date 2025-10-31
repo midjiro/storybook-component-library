@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Toast, type ToastProps } from './Toast';
+import { Toast, type ToastProps } from './Toast/Toast';
 
 interface ToastItem extends ToastProps {
   id: string;

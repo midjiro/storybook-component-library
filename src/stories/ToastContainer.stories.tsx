@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ToastContainer } from '@/components/ToastContainer';
-import { toast } from '@/utils/toast';
+import { toast } from '@/components/Toast/utils/toast';
 
 const meta = {
   title: 'Example/ToastTrigger',

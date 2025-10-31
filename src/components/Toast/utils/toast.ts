@@ -1,4 +1,4 @@
-import type { ToastProps } from '@/components/Toast';
+import type { ToastProps } from '@/components/Toast/Toast';
 
 /**
  * Trigger a toast notification

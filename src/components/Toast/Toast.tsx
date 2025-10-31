@@ -4,16 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 
 import { cn } from '@/utils/classnames';
-
-export type ToastPosition =
-  | 'top-right'
-  | 'top-left'
-  | 'bottom-right'
-  | 'bottom-left'
-  | 'top-center'
-  | 'bottom-center';
-
-export type ToastType = 'info' | 'warning' | 'error' | 'success';
+import { colorMap, iconColorMap } from './constants/colorMaps';
+import { type ToastPosition, positionMap } from './constants/positionMaps';
+import { type ToastType } from './constants/toastTypes';
 
 export interface ToastProps {
   /**
@@ -53,29 +46,6 @@ export interface ToastProps {
    */
   visible?: boolean;
 }
-
-const colorMap = {
-  info: 'border-blue-200 bg-blue-50 text-blue-900',
-  success: 'border-green-200 bg-green-50 text-green-900',
-  warning: 'border-yellow-200 bg-yellow-50 text-yellow-900',
-  error: 'border-red-200 bg-red-50 text-red-900',
-};
-
-const iconColorMap = {
-  info: 'text-blue-600',
-  success: 'text-green-600',
-  warning: 'text-yellow-600',
-  error: 'text-red-600',
-};
-
-const positionMap: Record<ToastPosition, string> = {
-  'top-left': 'top-4 left-4',
-  'top-right': 'top-4 right-4',
-  'top-center': 'top-4 left-1/2 -translate-x-1/2',
-  'bottom-left': 'bottom-4 left-4',
-  'bottom-right': 'bottom-4 right-4',
-  'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2',
-};
 
 /**
  * Toast notification component with customizable position and types
